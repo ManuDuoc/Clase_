@@ -1,0 +1,12 @@
+#centrado{
+    text-align:  center;
+}
+.cambio_color{
+    color: brown;
+    background-color: blue;
+}
+
+p{
+    text-align: right;
+}
+
