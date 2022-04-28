@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //Generar el elemento al boton
+            $("#cargar").click(function(){
+                //Leer el servicio Web
+                var n = $("#texto").val();
+                $.get('https://www.themealdb.com/api/json/v1/1/filter.php?i='+n,function(data){
+                    //Recorro de la lista con el ciclo for
+                    $.each(data.categories,function(i,item){
+                        //Mostrar cada elemento de la lista en una fila de la tabla
+                        $("#tabla").append("<tr> <td>"+ item.strMeal +
+                            "</td> <td> <img src='"+ item.strMealThumb +
+                            "'alt='sin foto'> </td> <td>"+ item.idMeal +
+                            "</td> </tr>")
+                    });
+                    
+                });
+            });
+        });
+    </script>
+</head>
+<body>  
+    <div class="container">
+        <div class="row">
+            <h1>Datos Servicio Web</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <input class="form-control" id="texto">
+                <button class="btn btn-danger" type="button" id="cargar"> Traer</button>
+            </div>
+            <div class="col-md-6"></div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <table class="table table-striped" id="tabla">
+                    <thead>
+                        <tr>
+                            <th>Comida</th>
+                            
+                            <th>Foto</th>
+                            
+                            <th>ID</th>
+                            
+                        </tr>
+
+                    </thead>
+                    
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
